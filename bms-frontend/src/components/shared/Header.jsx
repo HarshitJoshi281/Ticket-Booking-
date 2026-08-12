@@ -2,8 +2,11 @@
 import React from "react";
 import {FaSearch} from "react-icons/fa"
 import mainLogo from "../../assets/main-icon.png";
+import { useLocation } from "../../context/LocationContext.jsx";
+import map from '../../assets/pin.gif'
 
 const Header = () => {
+  const {location,loading,error}=useLocation();
   return (
     <div className="w-full bg-white text-sm">
       <div className="px-4 md:px-8">
@@ -30,7 +33,8 @@ const Header = () => {
           </div>  
           <div className=" flex text-sm font-medium cursor-pointer">
             <div className="text-sm font-medium cursor-pointer ">
-                 Dehradun &nbsp; 
+              {location && <img src ={map} alt="loading..." className="w-10 h-10"/>}
+                 {location && <p>{location} &nbsp; </p>} 
             </div>
             <button className="bg bg-red-600 cursor-pointer text-white px-3 py-1.5 rounded text-sm font-medium">
                  Sign in
