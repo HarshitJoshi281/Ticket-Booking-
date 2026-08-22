@@ -39,12 +39,11 @@ export const banners = [banner1, banner2, banner3, banner4];
 export const movies = [
   {
     id: 1,
-    title: "Maa",
-    genre: "Fantasy/Horror/Mythological/Thriller",
-    rating: 7.2,
-    votes: "2.7K",
-    img: m1,
-    promoted: true,
+    "title": "Naruto the Movie: Ninja Clash in the Land of Snow",
+    "genre": "Action/Adventure/Animation/Comedy",
+      "rating": 9.6,
+      "votes": "51",
+      "img": m9
   },
   {
     id: 2,
