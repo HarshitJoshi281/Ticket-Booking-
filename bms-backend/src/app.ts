@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
+import router from "./routes";
 
 dotenv.config();
 
@@ -15,6 +16,9 @@ app.use(
 );
 app.use(cookieParser());
 app.use(express.json());
+
+//All routes
+app.use("/api/v1",router);
 
 
 // Global error handler (MUST be after all routes)
