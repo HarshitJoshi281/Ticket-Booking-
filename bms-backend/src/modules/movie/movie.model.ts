@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import {IMovie} from "./movie.interface";
 
 const movieSchema = new mongoose.Schema<IMovie>({
-   _id: {type:String,required:true},
+   //_id: {type:String,required:true},
     title: {type:String,required:true},
     description: {type:String,required:true},
     duration: {type:String,required:true},
