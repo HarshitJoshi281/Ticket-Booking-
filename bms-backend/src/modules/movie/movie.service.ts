@@ -1,5 +1,5 @@
 
-import { release } from "os";
+
 import { IMovie } from "./movie.interface";
 import { MovieModel } from "./movie.model";
 
