@@ -1,12 +1,12 @@
 import { Types } from "mongoose";
 import { IMovie } from "../modules/movie/movie.interface";
 import { IShow } from "../modules/show/show.interface";
-import { IThreater } from "../modules/theater/theater.interface";
+import { ITheatre } from "../modules/theater/theater.interface";
 
 type GroupedShow = {
   movie: Types.ObjectId | IMovie;
   theater: {
-    theaterDetails: Types.ObjectId | IThreater;
+    theaterDetails: Types.ObjectId | ITheatre;
     shows: Array<{
       _id: string;
       date: string;
@@ -78,14 +78,14 @@ export const groupShowsByTheatreAndMovie = (shows: IShow[]): GroupedShow[] => {
 
   shows.forEach((show) => {
     const movieId = show.movie._id;
-    const theatreId = show.theater._id;
+    const theatreId = show.theatre._id;
     const key = `${movieId}_${theatreId}`;
 
     if (!grouped[key]) {
       grouped[key] = {
         movie: show.movie,
         theater: {
-          theaterDetails: show.theater,
+          theaterDetails: show.theatre,
           shows: [],
         },
       };
