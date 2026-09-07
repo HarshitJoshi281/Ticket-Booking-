@@ -40,27 +40,27 @@ export const seedShow = async () => {
 // First seed your movies and then theaters.
 // After that, select any two movies for which you want to create shows
 // and paste their IDs in the movieIds array below.
-// Also, pass your current state (e.g., "West Bengal") to filter theatres.
+// Also, pass your current state (e.g., "West Bengal") to filter theaters.
 // This setup is only for testing purposes to avoid creating shows for all movies.
 
 // Otherwise, you can also do the things below commented if you want to create shows for all movies and states
 //  const movies = await MovieModel.find({});
-//  const theatres = await TheaterModel.find({});
+//  const theaters = await TheaterModel.find({});
 
   
-  const movieIds = ["68e224451aeabaafaa43ac58", "68e224451aeabaafaa43ac57"];
+  const movieIds = ["6a9f0eee5242337202e8fa3e", "6a9f0eee5242337202e8fa40"];
   const movies = await MovieModel.find({ _id: { $in: movieIds } });
-  const theatres = await TheaterModel.find({ state: "West Bengal" });
+  const theaters = await TheaterModel.find({ state: "Uttarakhand" });
 
-  if (!movies.length || !theatres.length) {
-    console.error("Movies or theatres not found. Please check IDs or state name.");
+  if (!movies.length || !theaters.length) {
+    console.error("Movies or theaters not found. Please check IDs or state name.");
     return;
   }
 
   const today = dayjs().startOf("day");
 
   for (const movie of movies) {
-    for (const theatre of theatres) {
+    for (const theater of theaters) {
       for (let d = 0; d < 2; d++) { // ✅ today and tomorrow
         const showDate = today.add(d, "day");
         const formattedDate = showDate.format("DD-MM-YYYY");
@@ -73,8 +73,8 @@ export const seedShow = async () => {
 
           const newShow = new ShowModel({
             movie: movie._id,
-            theater: theatre._id,
-            location: theatre.state,
+            theater: theater._id,
+            location: theater.state,
             format: formats[Math.floor(Math.random() * formats.length)],
             audioType: "Dolby 7.1",
             startTime: slot.start, 
@@ -85,7 +85,7 @@ export const seedShow = async () => {
 
           await newShow.save();
           console.log(
-            `🎬 Show created for ${movie.title} at ${theatre.name} on ${formattedDate} (${slot.start} - ${slot.end})`
+            `🎬 Show created for ${movie.title} at ${theater.name} on ${formattedDate} (${slot.start} - ${slot.end})`
           );
         }
       }

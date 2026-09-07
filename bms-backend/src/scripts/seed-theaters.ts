@@ -111,6 +111,31 @@ mongoose
         state: "Andhra Pradesh",
         areas: ["MVP Colony", "Gajuwaka", "Dwaraka Nagar", "Waltair Uplands"],
       },
+      {
+        name: "Dehradun",
+        state: "Uttarakhand",
+        areas: ["Rajpur Road", "Clock Tower", "Prem Nagar", "Vasant Vihar"],
+      },
+      {
+        name: "Haridwar",
+        state: "Uttarakhand",
+        areas: ["Jwalapur", "Ranipur", "Kankhal", "BHEL"],
+      },
+      {
+        name: "Rishikesh",
+        state: "Uttarakhand",
+        areas: ["Tapovan", "Swarg Ashram", "Shyampur", "IDPL"],
+      },
+      {
+        name: "Haldwani",
+        state: "Uttarakhand",
+        areas: ["Nainital Road", "Kaladhungi Road", "Mukhani", "Kathgharia"],
+      },
+      {
+        name: "Roorkee",
+        state: "Uttarakhand",
+        areas: ["Civil Lines", "Ram Nagar", "Ganeshpur", "IIT Roorkee"],
+      },
     ];
 
     const brands = ["PVR", "INOX", "Cinepolis"];
