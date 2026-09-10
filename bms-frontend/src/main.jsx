@@ -4,13 +4,26 @@ import './index.css'
 import {BrowserRouter as Router} from 'react-router-dom'
 import App from './App.jsx' 
 import {LocationProvide} from "./context/LocationContext.jsx"
+import { QueryClientProvider,QueryClient } from '@tanstack/react-query'
+
+const queryClient = new QueryClient({
+  defaultOptions:{
+    queries:{
+       staleTime:10000,
+    },
+  },
+})
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Router>
+      <QueryClientProvider client={queryClient}>
+
+      
       <LocationProvide>
         <App/>
       </LocationProvide>
+      </QueryClientProvider>
     </Router>
   </StrictMode>,
 )

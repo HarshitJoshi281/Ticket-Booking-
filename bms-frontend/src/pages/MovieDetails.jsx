@@ -3,25 +3,36 @@ import m10 from "../assets/m10.avif";
 
 import { filters } from "../utils/constants";
 import { useParams } from "react-router-dom";
+import { keepPreviousData,  useQuery } from "@tanstack/react-query";
+import { getMoviesById } from "../apis";
+
+// const movie = {
+//   id: 10,
+//   title: "28 Years Later",
+//   genre: ["Horror", "Thriller"],
+//   rating: 7.9,
+//   votes: "3.7K",
+//   img: m10,
+//   languages: ["English", "Hindi", "Tamil"],
+//   format: ["2D", "3D", "4D"],
+//   certification: "A",
+//   duration: "2h 24m",
+//   releaseDate: "2026-09-09",
+//   description:
+//     "Released on June 20, 2025, 28 Years Later is a post-apocalyptic horror film directed by Danny Boyle and written by Alex Garland. Set nearly three decades after the initial rage virus outbreak, the story follows 12-year-old Spike living on a quarantined tidal island. He journeys to the ruined mainland to find help for his ill mother.",
+// };
 
 const MovieDetails = () => {
-  const { id } = useParams();
 
-  const movie = {
-    id: 10,
-    title: "28 Years Later",
-    genre: ["Horror", "Thriller"],
-    rating: 7.9,
-    votes: "3.7K",
-    img: m10,
-    languages: ["English", "Hindi", "Tamil"],
-    format: ["2D", "3D", "4D"],
-    certification: "A",
-    duration: "2h 24m",
-    releaseDate: "2026-09-09",
-    description:
-      "Released on June 20, 2025, 28 Years Later is a post-apocalyptic horror film directed by Danny Boyle and written by Alex Garland. Set nearly three decades after the initial rage virus outbreak, the story follows 12-year-old Spike living on a quarantined tidal island. He journeys to the ruined mainland to find help for his ill mother.",
-  };
+
+  const {id}= useParams();
+
+ const { data: movie, isError } = useQuery({
+  queryKey: ["movies", id],
+  queryFn: () => getMoviesById(id),
+  placeholderData: keepPreviousData
+});
+  console.log(movie)
 
   return (
     <>
@@ -29,7 +40,7 @@ const MovieDetails = () => {
       <div
         className="relative text-white font-sans px-4 py-10"
         style={{
-          backgroundImage: `url(${movie.img})`,
+          backgroundImage: `url(${movie?.data.movie.posterUrl})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -41,8 +52,8 @@ const MovieDetails = () => {
           {/* Poster */}
           <div>
             <img
-              src={movie.img}
-              alt={movie.title}
+              src={movie?.data.movie.posterUrl}
+              alt={movie?.data.movie.title}
               className="rounded-xl w-52 shadow-xl"
             />
           </div>
@@ -50,17 +61,17 @@ const MovieDetails = () => {
           {/* Details */}
           <div className="flex flex-col justify-start flex-1">
             <h1 className="text-4xl font-bold mb-4">
-              {movie.title}
+              {movie?.data.movie.title}
             </h1>
 
             <div className="flex items-center gap-4 mb-3">
               <div className="bg-[#3a3a3a] px-4 py-2 rounded-md flex items-center gap-2 text-sm">
                 <span className="text-pink-500 font-bold">
-                  ★ {movie.rating}
+                  ★ {movie?.data.movie.rating}
                 </span>
 
                 <span className="text-gray-300">
-                  {movie.votes} Votes
+                  {movie?.data.movie.votes} Votes
                 </span>
 
                 <button className="cursor-pointer bg-[#2f2f2f] ml-6 px-4 py-2 rounded-md hover:bg-[#4a4a4a]">
@@ -71,17 +82,17 @@ const MovieDetails = () => {
 
             <div className="flex items-center gap-3 text-sm mb-4">
               <span className="bg-[#3a3a3a] px-3 py-1 rounded">
-                {movie.format.join(", ")}
+                {movie?.data.movie.format.join(", ")}
               </span>
 
               <span className="bg-[#3a3a3a] px-3 py-1 rounded">
-                {movie.languages.join(", ")}
+                {movie?.data.movie.languages.join(", ")}
               </span>
             </div>
 
             <p className="text-sm text-gray-300 mb-4">
-              {movie.duration} • {movie.genre.join(", ")} •{" "}
-              {movie.certification} • {movie.releaseDate}
+              {movie?.data.movie.duration} • {movie?.data.movie.genre.join(", ")} •{" "}
+              {movie?.data.movie.certification} • {movie?.data.movie.releaseDate}
             </p>
 
             <div>
@@ -90,7 +101,7 @@ const MovieDetails = () => {
               </h2>
 
               <p className="text-sm text-gray-50 leading-relaxed mb-4">
-                {movie.description}
+                {movie?.data.movie.description}
               </p>
             </div>
           </div>
@@ -145,7 +156,7 @@ const MovieDetails = () => {
         </div>
 
         {/* Theatres */}
-       
+
       </div>
     </>
   );
