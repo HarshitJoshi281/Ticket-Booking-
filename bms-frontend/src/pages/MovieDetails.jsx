@@ -5,6 +5,7 @@ import { filters } from "../utils/constants";
 import { useParams } from "react-router-dom";
 import { keepPreviousData,  useQuery } from "@tanstack/react-query";
 import { getMoviesById } from "../apis";
+import TheaterTimings from "../components/movies/TheaterTimings";
 
 // const movie = {
 //   id: 10,
@@ -156,6 +157,7 @@ const MovieDetails = () => {
         </div>
 
         {/* Theatres */}
+        <TheaterTimings movieId={id}  />
 
       </div>
     </>
