@@ -43,7 +43,7 @@ const handleNavigate = (movie) => {
             Recommended Movies
           </h2>
 
-          <span className='text-md text-red-500 cursor-pointer hover:underline font-medium'>
+          <span onClick={()=>navigate("/movies")} className='text-md text-red-500 cursor-pointer hover:underline font-medium'>
             See all
           </span>
         </div>

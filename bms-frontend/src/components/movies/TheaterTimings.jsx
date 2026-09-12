@@ -84,11 +84,8 @@ const TheaterTimings = ({movieId}) => {
                       const movieName = curr.movie.title;
                       return (
                         <button 
+
                         onClick={() => {
-                          if(!auth){
-                            toggleModal();
-                            return;
-                          }
                           navigate(`/movies/${movieId}/${movieName}/${location}/theater/${theaterId}/show/${slot._id}/seat-layout`)
                         }}
                         key={i} className="border cursor-pointer hover:bg-gray-100 border-gray-300 rounded-[16px] px-12 py-2 text-sm flex flex-col items-center justify-center">
