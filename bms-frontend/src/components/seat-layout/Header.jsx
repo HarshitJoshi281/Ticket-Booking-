@@ -2,7 +2,8 @@ import React from 'react'
 import mainLogo from "../../assets/main-icon.png";
 import { Navigate, useNavigate } from 'react-router-dom';
 import dayjs from "dayjs"
-const Header = ({showData}) => {
+import Checkout from '../../pages/Checkout';
+const Header = ({showData,type}) => {
   const navigate = useNavigate();
   return (
    <>
@@ -15,6 +16,11 @@ const Header = ({showData}) => {
           className="h-6 md:h-8 object-contain cursor-pointer"
         />
 
+        {
+          type === "checkout"?(
+            <div className='font-bold text-gray-900 text-lg md:text-xl'><h1>Review your booking</h1></div>
+          ):(
+
         <div className='text-center'>
           <h2 className='font-bold text-lg md:text-xl'>
             {showData?.movie.title}
@@ -25,6 +31,9 @@ const Header = ({showData}) => {
 
           </p>
         </div>
+          )
+        }
+
 
         <button
           className="bg-[#f84464] cursor-pointer text-white px-4 py-1.5 rounded text-sm"
@@ -34,7 +43,10 @@ const Header = ({showData}) => {
       </div>
     </div>
     {/* Show Timings */}
-<div className="bg-white pt-4">
+  {
+    type !=="checkout"&&(
+      <>
+      <div className="bg-white pt-4">
   <div className="mx-auto px-6 pb-4 flex items-center gap-4 max-w-7xl">
     <div className="text-sm text-gray-700">
       <p className="font-medium text-gray-500 leading-tight text-sm">
@@ -54,6 +66,9 @@ const Header = ({showData}) => {
   </div>
 </div>
 <hr className='my-2 border-gray-300 max-w-7xl mx-auto' />
+ </>
+    )
+  }
 
    </>
   )
