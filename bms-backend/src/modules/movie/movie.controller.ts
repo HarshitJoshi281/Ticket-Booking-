@@ -33,12 +33,11 @@ export const getMovieById = async(req: Request,res:Response,next:NextFunction)=>
     }
 }
 export const getTopRecommendedMovies= async(req: Request,res:Response,next:NextFunction)=>{
-    try {
-        const topMovies = await MovieService.getTopMovieByVotes(5);
-        res.status(200).json({
-             topMovies
-        })
-    } catch (error) {
-        next(error);
-    }
+   try {
+    const topMovies=await MovieService.getTopMovieByVotes(5);
+    res.status(200).json({topMovies})
+   } catch (error) {
+    next(error)
+   }
 }
+ 
