@@ -17,6 +17,10 @@ export const getUserById = async (id: string): Promise<IUser | null> => {
   return await UserModel.findById(id);
 }
 
+//Get User BY Email
+export const getUserByEmail = async(email:string):Promise<IUser|null>=>{
+  return await UserModel.findById(email);
+}
 // activate User
 export const activateUser = async (id: string, updateData: Partial<IUser>): Promise<IUser | null> => {
   const updatedUser = await UserModel.findByIdAndUpdate(id, updateData, { new: true });
